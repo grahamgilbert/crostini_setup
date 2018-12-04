@@ -83,11 +83,14 @@ if [ $? -ne 0 ]; then
 fi
 
 # Python 3.7
+if [ ! -f /usr/local/bin/python3.7 ]; then
+
  wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
  tar xvf Python-3.7.1.tgz
  cd Python-3.7.1
  ./configure --enable-optimizations
  make -j8
  make altinstall
+fi
 
 rm -rf Python-3.7.1*
