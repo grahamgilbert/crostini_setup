@@ -20,22 +20,6 @@ apt install -y \
    tk-dev \
    python
 
-# Python 3.7
- wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
- tar xvf Python-3.7.1.tgz
- cd Python-3.7.1
- ./configure --enable-optimizations
- make -j8
- make altinstall
-
- rm -rf Python-3.7.1*
-
-curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/debian \
-   $(lsb_release -cs) \
-   stable"
-
 # Install vscode
 curl -L -o vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
 dpkg -i vscode.deb
@@ -45,6 +29,13 @@ apt update -y
 
 # Install Hack font
 apt install -y fonts-hack-ttf
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+dpkg -i google-chrome-stable_current_amd64.deb 
+apt-get install -f
+dpkg -i google-chrome-stable_current_amd64.deb 
+rm -f google-chrome-stable_current_amd64.deb
 
 # Terraform time
 curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
@@ -63,4 +54,31 @@ apt update -y
 git clone git@github.com:abiosoft/crostini-docker.git /tmp/crostini-docker
 cd /tmp/crostini-docker
 ./install.sh
+
+# aws cli
+pip install awscli --upgrade
+
+# glocoud
+# Create environment variable for correct distribution
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+
+# Add the Cloud SDK distribution URI as a package source
+echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
+
+# Import the Google Cloud Platform public key
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+# Update the package list and install the Cloud SDK
+apt update && apt install -y google-cloud-sdk
+
 # if ssh key isn't here exit and tell person to copy it to place
+
+# Python 3.7
+ wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
+ tar xvf Python-3.7.1.tgz
+ cd Python-3.7.1
+ ./configure --enable-optimizations
+ make -j8
+ make altinstall
+
+rm -rf Python-3.7.1*
