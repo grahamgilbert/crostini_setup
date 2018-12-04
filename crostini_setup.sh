@@ -72,6 +72,15 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 apt update && apt install -y google-cloud-sdk
 
 # if ssh key isn't here exit and tell person to copy it to place
+if [ ! -f ~/.ssh/id_rsa ]; then
+    echo "SSH key not found!"
+    exit 1
+fi
+
+grep -q -F 'if [ -z "$SSH_AUTH_SOCK" ] ; then eval `ssh-agent -s` && ssh-add; fi' ~/.bashrc
+if [ $? -ne 0 ]; then
+  echo 'if [ -z "$SSH_AUTH_SOCK" ] ; then eval `ssh-agent -s` && ssh-add; fi' >> ~/.bashrc
+fi
 
 # Python 3.7
  wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
