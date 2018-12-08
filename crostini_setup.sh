@@ -32,9 +32,9 @@ apt install -y fonts-hack-ttf
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-dpkg -i google-chrome-stable_current_amd64.deb 
+dpkg -i google-chrome-stable_current_amd64.deb
 apt-get install -f
-dpkg -i google-chrome-stable_current_amd64.deb 
+dpkg -i google-chrome-stable_current_amd64.deb
 rm -f google-chrome-stable_current_amd64.deb
 
 # Terraform time
@@ -70,12 +70,6 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 # Update the package list and install the Cloud SDK
 apt update && apt install -y google-cloud-sdk
-
-# if ssh key isn't here exit and tell person to copy it to place
-if [ ! -f ~/.ssh/id_rsa ]; then
-    echo "SSH key not found!"
-    exit 1
-fi
 
 grep -q -F 'if [ -z "$SSH_AUTH_SOCK" ] ; then eval `ssh-agent -s` && ssh-add; fi' ~/.bashrc
 if [ $? -ne 0 ]; then
