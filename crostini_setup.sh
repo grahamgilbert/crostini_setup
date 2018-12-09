@@ -6,6 +6,7 @@ apt install -y \
    curl \
    software-properties-common \
    make \
+   gnome-terminal \
    build-essential \
    libssl-dev \
    zlib1g-dev \
