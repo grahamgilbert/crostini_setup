@@ -36,7 +36,7 @@ apt install -y fonts-hack-ttf
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 dpkg -i google-chrome-stable_current_amd64.deb
-apt-get install -f
+apt install -fy
 dpkg -i google-chrome-stable_current_amd64.deb
 rm -f google-chrome-stable_current_amd64.deb
 
