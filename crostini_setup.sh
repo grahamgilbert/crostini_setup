@@ -74,14 +74,14 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 # Update the package list and install the Cloud SDK
 apt update && apt install -y google-cloud-sdk
 
-grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
-' ~/.bashrc
-if [ $? -ne 0 ]; then
-  echo 'eval `keychain --eval --agents ssh id_rsa`
-' >> ~/.bashrc
-fi
+# grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
+# ' ~/.bashrc
+# if [ $? -ne 0 ]; then
+#   echo 'eval `keychain --eval --agents ssh id_rsa`
+# ' >> ~/.bashrc
+# fi
 
-ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
+# ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
 
 # Python 3.7
 if [ ! -f /usr/local/bin/python3.7 ]; then
