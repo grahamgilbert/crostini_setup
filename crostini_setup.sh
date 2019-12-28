@@ -21,7 +21,7 @@ apt install -y \
    libncursesw5-dev \
    xz-utils \
    tk-dev \
-   python
+   python3
 
 # Install vscode
 curl -L -o vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
@@ -41,11 +41,11 @@ dpkg -i google-chrome-stable_current_amd64.deb
 rm -f google-chrome-stable_current_amd64.deb
 
 # Terraform time
-curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
-unzip terraform.zip
-rm terraform.zip
-mkdir -p /usr/local/bin
-mv terraform /usr/local/bin/terraform
+# curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
+# unzip terraform.zip
+# rm terraform.zip
+# mkdir -p /usr/local/bin
+# mv terraform /usr/local/bin/terraform
 
 # Docker
 curl -fsSL https://download.docker.com/linux/debian/gpg |  apt-key add -
@@ -54,9 +54,10 @@ add-apt-repository \
    $(lsb_release -cs) \
    stable"
 apt update -y
-git clone https://github.com/abiosoft/crostini-docker /tmp/crostini-docker
-cd /tmp/crostini-docker
-./install.sh
+# git clone https://github.com/abiosoft/crostini-docker /tmp/crostini-docker
+# cd /tmp/crostini-docker
+# ./install.sh
+apt install docker-ce
 
 # aws cli
 pip install awscli --upgrade
@@ -84,14 +85,14 @@ apt update && apt install -y google-cloud-sdk
 # ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
 
 # Python 3.7
-if [ ! -f /usr/local/bin/python3.7 ]; then
+# if [ ! -f /usr/local/bin/python3.7 ]; then
 
- wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
- tar xvf Python-3.7.1.tgz
- cd Python-3.7.1
- ./configure --enable-optimizations
- make -j8
- make altinstall
-fi
+#  wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
+#  tar xvf Python-3.7.1.tgz
+#  cd Python-3.7.1
+#  ./configure --enable-optimizations
+#  make -j8
+#  make altinstall
+# fi
 
-rm -rf Python-3.7.1*
+# rm -rf Python-3.7.1*
