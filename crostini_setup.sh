@@ -56,7 +56,7 @@ apt update -y
 # git clone https://github.com/abiosoft/crostini-docker /tmp/crostini-docker
 # cd /tmp/crostini-docker
 # ./install.sh
-apt install docker-ce
+apt install -y docker-ce
 
 # aws cli
 pip install awscli --upgrade
