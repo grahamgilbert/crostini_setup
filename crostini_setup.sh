@@ -30,6 +30,8 @@ apt install -f -y
 rm -f vscode.deb
 apt update -y
 
+code --install-extension shan.code-settings-sync
+
 # Install Hack font
 apt install -y fonts-hack-ttf
 
@@ -46,11 +48,11 @@ apt update
 apt install pdk
 
 # Terraform time
-# curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
-# unzip terraform.zip
-# rm terraform.zip
-# mkdir -p /usr/local/bin
-# mv terraform /usr/local/bin/terraform
+curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
+unzip terraform.zip
+rm terraform.zip
+mkdir -p /usr/local/bin
+mv terraform /usr/local/bin/terraform
 
 # Docker
 curl -fsSL https://download.docker.com/linux/debian/gpg |  apt-key add -
