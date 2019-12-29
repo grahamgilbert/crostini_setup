@@ -92,6 +92,8 @@ rm go1.13.5.linux-amd64.tar.gz
 # fi
 
 # ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
+USER=`logname`
+grep -qxF 'export PATH=$PATH:/usr/local/go/bin' /home/$USER/.bashrc || echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/$USER/.bashrc
 
 # Python 3.7
 # if [ ! -f /usr/local/bin/python3.7 ]; then
