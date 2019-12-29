@@ -40,6 +40,11 @@ apt install -fy
 dpkg -i google-chrome-stable_current_amd64.deb
 rm -f google-chrome-stable_current_amd64.deb
 
+wget https://apt.puppet.com/puppet-tools-release-stretch.deb
+dpkg -i puppet-tools-release-stretch.deb
+apt update
+apt install pdk
+
 # Terraform time
 # curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
 # unzip terraform.zip
@@ -74,6 +79,10 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 # Update the package list and install the Cloud SDK
 apt update && apt install -y google-cloud-sdk
+
+wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.13.5.linux-amd64.tar.gz
+rm go1.13.5.linux-amd64.tar.gz
 
 # grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
 # ' ~/.bashrc
