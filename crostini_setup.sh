@@ -60,7 +60,7 @@ apt update -y
 apt install -y docker-ce
 
 # aws cli
-pip install awscli --upgrade
+python3 -m pip install awscli --upgrade
 
 # glocoud
 # Create environment variable for correct distribution
