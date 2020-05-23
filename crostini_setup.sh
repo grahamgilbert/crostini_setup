@@ -48,7 +48,7 @@ apt update
 apt install pdk
 
 # Terraform time
-curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
+curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip
 unzip terraform.zip
 rm terraform.zip
 mkdir -p /usr/local/bin
@@ -61,9 +61,6 @@ add-apt-repository \
    $(lsb_release -cs) \
    stable"
 apt update -y
-# git clone https://github.com/abiosoft/crostini-docker /tmp/crostini-docker
-# cd /tmp/crostini-docker
-# ./install.sh
 apt install -y docker-ce
 
 # aws cli
@@ -82,16 +79,18 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 # Update the package list and install the Cloud SDK
 apt update && apt install -y google-cloud-sdk
 
-wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.13.5.linux-amd64.tar.gz
-rm go1.13.5.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+rm go1.14.3.linux-amd64.tar.gz
 
-# grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
-# ' ~/.bashrc
-# if [ $? -ne 0 ]; then
-#   echo 'eval `keychain --eval --agents ssh id_rsa`
-# ' >> ~/.bashrc
-# fi
+grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
+' /home/${SUDO_USER}/.bashrc
+if [ $? -ne 0 ]; then
+  echo 'eval `keychain --eval --agents ssh id_rsa`
+' >> /home/${SUDO_USER}/.bashrc
+fi
+
+chown ${SUDO_USER} /home/${SUDO_USER}/.bashrc
 
 # ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
 USER=`logname`
