@@ -21,7 +21,7 @@ apt install -y \
    libncursesw5-dev \
    xz-utils \
    tk-dev \
-   python3
+   python3.7
 
 # Install vscode
 curl -L -o vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
