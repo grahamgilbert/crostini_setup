@@ -1,4 +1,6 @@
 #!/bin/bash
+
+apt install -y lsb-release software-properties-common
 # gcloud
 # Create environment variable for correct distribution
 export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
