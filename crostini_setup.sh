@@ -46,7 +46,10 @@ apt install -y \
    fonts-hack-ttf \
    pdk \
    docker-ce \
+   gcc \
    google-cloud-sdk
+   
+apt install --reinstall build-essential
 
 # Install vscode
 curl -L -o vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
