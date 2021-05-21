@@ -98,7 +98,7 @@ rm go1.16.4.linux-amd64.tar.gz
 grep -qxF 'export PATH=$PATH:/usr/local/go/bin' /home/$USER/.bashrc || echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/$USER/.bashrc
 
 # Python 3.8
-if [ ! -f /usr/local/bin/python3.8 ]; then
+if [ ! -f /usr/local/bin/python3.9 ]; then
 
  wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
  tar xvf Python-3.9.5.tgz
