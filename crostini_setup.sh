@@ -72,26 +72,26 @@ rm -f google-chrome-stable_current_amd64.deb
 
 
 # Terraform time
-curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip
+curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
 unzip terraform.zip
 rm terraform.zip
 mkdir -p /usr/local/bin
 mv terraform /usr/local/bin/terraform
 
 
-wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
-rm go1.14.3.linux-amd64.tar.gz
+wget https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.16.4.linux-amd64.tar.gz
+rm go1.16.4.linux-amd64.tar.gz
 
-USER=`logname`
-grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
-' /home/${USER}/.bashrc
-if [ $? -ne 0 ]; then
-  echo 'eval `keychain --eval --agents ssh id_rsa`
-' >> /home/${USER}/.bashrc
-fi
+#USER=`logname`
+#grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
+#' /home/${USER}/.bashrc
+#if [ $? -ne 0 ]; then
+#  echo 'eval `keychain --eval --agents ssh id_rsa`
+#' >> /home/${USER}/.bashrc
+#fi
 
-chown ${SUDO_USER} /home/${USER}/.bashrc
+#chown ${SUDO_USER} /home/${USER}/.bashrc
 
 # ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
 
@@ -100,9 +100,9 @@ grep -qxF 'export PATH=$PATH:/usr/local/go/bin' /home/$USER/.bashrc || echo 'exp
 # Python 3.8
 if [ ! -f /usr/local/bin/python3.8 ]; then
 
- wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
- tar xvf Python-3.8.3.tgz
- cd Python-3.8.3
+ wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
+ tar xvf Python-3.9.5.tgz
+ cd Python-3.9.5
  ./configure --enable-optimizations
  make -j8
  make altinstall
@@ -111,4 +111,4 @@ fi
 rm -rf Python-*
 
 # aws cli
-python3.8 -m pip install awscli --upgrade
+python3.9 -m pip install awscli --upgrade
