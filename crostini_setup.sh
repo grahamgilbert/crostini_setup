@@ -83,30 +83,35 @@ wget https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.16.4.linux-amd64.tar.gz
 rm go1.16.4.linux-amd64.tar.gz
 
-#USER=`logname`
-#grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
-#' /home/${USER}/.bashrc
-#if [ $? -ne 0 ]; then
-#  echo 'eval `keychain --eval --agents ssh id_rsa`
-#' >> /home/${USER}/.bashrc
-#fi
+CURRENTUSER=`logname`
+grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
+' /home/${CURRENTUSER}/.bashrc
+if [ $? -ne 0 ]; then
+  echo 'eval `keychain --eval --agents ssh id_rsa`
+' >> /home/${CURRENTUSER}/.bashrc
+fi
 
-#chown ${SUDO_USER} /home/${USER}/.bashrc
+chown ${CURRENTUSER} /home/${CURRENTUSER}/.bashrc
 
 # ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
 
-grep -qxF 'export PATH=$PATH:/usr/local/go/bin' /home/$USER/.bashrc || echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/$USER/.bashrc
+git clone https://github.com/tfutils/tfenv.git /home/${CURRENTUSER}/.tfenv
+chown -R ${CURRENTUSER} /home/${CURRENTUSER}/.tfenv
 
-# Python 3.8
-if [ ! -f /usr/local/bin/python3.9 ]; then
 
- wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
- tar xvf Python-3.9.5.tgz
- cd Python-3.9.5
- ./configure --enable-optimizations
- make -j8
- make altinstall
-fi
+grep -qxF 'export PATH=$PATH:/usr/local/go/bin:.tfenv/bin' /home/$CURRENTUSER/.bashrc || echo 'export PATH=$PATH:/usr/local/go/bin:.tfenv/bin' >> /home/$CURRENTUSER/.bashrc
+chown ${CURRENTUSER} /home/${CURRENTUSER}/.bashrc
+
+# Python 3.9
+# if [ ! -f /usr/local/bin/python3.9 ]; then
+
+#  wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
+#  tar xvf Python-3.9.5.tgz
+#  cd Python-3.9.5
+#  ./configure --enable-optimizations
+#  make -j8
+#  make altinstall
+# fi
 
 rm -rf Python-*
 
