@@ -44,7 +44,8 @@ apt install -y \
    libncursesw5-dev \
    xz-utils \
    tk-dev \
-   python3.7 \
+   python3 \
+   python3-pip \
    nano \
    fonts-hack-ttf \
    pdk \
@@ -103,18 +104,5 @@ chown -R ${CURRENTUSER} /home/${CURRENTUSER}/.tfenv
 grep -qxF 'export PATH=$PATH:/usr/local/go/bin:.tfenv/bin' /home/$CURRENTUSER/.bashrc || echo 'export PATH=$PATH:/usr/local/go/bin:.tfenv/bin' >> /home/$CURRENTUSER/.bashrc
 chown ${CURRENTUSER} /home/${CURRENTUSER}/.bashrc
 
-# Python 3.9
-if [ ! -f /usr/local/bin/python3.9 ]; then
-
- wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
- tar xvf Python-3.9.5.tgz
- cd Python-3.9.5
- ./configure --enable-optimizations
- make -j8
- make altinstall
-fi
-
-rm -rf Python-*
-
 # aws cli
-python3.9 -m pip install awscli --upgrade
+python3 -m pip install awscli --upgrade
