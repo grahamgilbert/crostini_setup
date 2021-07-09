@@ -1,5 +1,5 @@
 #!/bin/bash
-
+CURRENTUSER=`logname`
 apt install -y lsb-release software-properties-common
 # gcloud
 # Create environment variable for correct distribution
@@ -62,7 +62,7 @@ apt install -f -y
 rm -f vscode.deb
 apt update -y
 
-code --install-extension shan.code-settings-sync
+sudo -u $CURRENTUSER code --install-extension shan.code-settings-sync
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
@@ -84,7 +84,7 @@ wget https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.16.4.linux-amd64.tar.gz
 rm go1.16.4.linux-amd64.tar.gz
 
-CURRENTUSER=`logname`
+
 grep -q -F 'eval `keychain --eval --agents ssh id_rsa`
 ' /home/${CURRENTUSER}/.bashrc
 if [ $? -ne 0 ]; then
