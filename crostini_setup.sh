@@ -50,6 +50,7 @@ apt install -y \
    pdk \
    docker-ce \
    gcc \
+   keychain \
    google-cloud-sdk
    
 apt install -y --reinstall build-essential
@@ -103,15 +104,15 @@ grep -qxF 'export PATH=$PATH:/usr/local/go/bin:.tfenv/bin' /home/$CURRENTUSER/.b
 chown ${CURRENTUSER} /home/${CURRENTUSER}/.bashrc
 
 # Python 3.9
-# if [ ! -f /usr/local/bin/python3.9 ]; then
+if [ ! -f /usr/local/bin/python3.9 ]; then
 
-#  wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
-#  tar xvf Python-3.9.5.tgz
-#  cd Python-3.9.5
-#  ./configure --enable-optimizations
-#  make -j8
-#  make altinstall
-# fi
+ wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
+ tar xvf Python-3.9.5.tgz
+ cd Python-3.9.5
+ ./configure --enable-optimizations
+ make -j8
+ make altinstall
+fi
 
 rm -rf Python-*
 
